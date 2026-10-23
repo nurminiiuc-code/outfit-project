@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OutfitOrbit | Digital Wardrobe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="min-h-screen">
+  <header class="topbar">
+    <a href="#" class="brand"><span class="brand-icon">✳</span> OutfitOrbit</a>
+    <nav class="hidden sm:flex gap-6 text-sm font-semibold">
+      <a href="#wardrobe" class="nav-link active">My Wardrobe</a>
+      <a href="#outfits" class="nav-link">Outfit Studio</a>
+      <a href="#favorites" class="nav-link">Favorites</a>
+    </nav>
+    <button id="randomTopBtn" class="btn btn-dark">✦ Random outfit</button>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">YOUR PERSONAL STYLE SPACE</p>
+        <h1>Dress like <em>you.</em></h1>
+        <p class="hero-text">Your closet, your creativity. Organize your pieces, discover fresh combinations, and make getting dressed the easiest part of your day.</p>
+        <div class="flex flex-wrap gap-3 mt-7">
+          <a href="#wardrobe" class="btn btn-dark">Explore my wardrobe <span>↗</span></a>
+          <a href="#outfits" class="btn btn-light">Create an outfit</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong id="statItems">0</strong><span>Pieces in closet</span></div>
+          <div><strong id="statOutfits">0</strong><span>Saved outfits</span></div>
+          <div><strong id="statFavorites">0</strong><span>Favorites</span></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="hero-note note-top">✦ Your style, curated</div>
+        <div class="fashion-card card-back"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=85" alt="Fashion inspiration"></div>
+        <div class="fashion-card card-front"><img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=600&q=85" alt="Outfit inspiration"></div>
+        <div class="hero-note note-bottom">✿ Made for everyday you</div>
+      </div>
+    </section>
+
+    <section id="wardrobe" class="section-block">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE COLLECTION</p><h2>Your wardrobe<span class="dot">.</span></h2><p class="muted">Every piece has a place. Add your favorites and style away.</p></div>
+        <button id="openAddBtn" class="btn btn-dark">＋ Add a piece</button>
+      </div>
+      <div class="filter-row">
+        <div id="categoryFilters" class="filter-pills">
+          <button class="filter-pill selected" data-category="All">All pieces</button>
+          <button class="filter-pill" data-category="Tops">Tops</button>
+          <button class="filter-pill" data-category="Bottoms">Bottoms</button>
+          <button class="filter-pill" data-category="Shoes">Shoes</button>
+          <button class="filter-pill" data-category="Accessories">Accessories</button>
+        </div>
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search your closet..." /></label>
+      </div>
+      <div id="wardrobeGrid" class="clothes-grid"></div>
+      <div id="emptyWardrobe" class="empty-state hidden"><span>✧</span><h3>Your wardrobe is waiting</h3><p>Add your first clothing piece to get started.</p><button class="btn btn-dark mt-4" id="emptyAddBtn">＋ Add your first piece</button></div>
+    </section>
+
+    <section id="outfits" class="section-block studio-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">MIX, MATCH, REPEAT</p><h2>Outfit studio<span class="dot">.</span></h2><p class="muted">Build a look that feels like you.</p></div>
+        <button id="randomBtn" class="btn btn-outline">⤨ Surprise me</button>
+      </div>
+      <div class="studio-layout">
+        <div class="studio-preview">
+          <div class="preview-top"><span>YOUR LOOK</span><span class="live-dot">● READY TO STYLE</span></div>
+          <div id="outfitPreview" class="outfit-preview">
+            <div class="slot-placeholder"><span>✧</span><p>Your next favorite look starts here.</p><small>Select pieces from your wardrobe below.</small></div>
+          </div>
+          <div class="outfit-name-row"><label for="outfitName">Name this look</label><input id="outfitName" maxlength="40" placeholder="e.g. Coffee date fit" /></div>
+          <button id="saveOutfitBtn" class="btn btn-dark w-full">♡ Save outfit</button>
+        </div>
+        <div class="studio-picker">
+          <div class="picker-heading"><div><h3>Choose your pieces</h3><p>Pick one from each category.</p></div><span class="picker-spark">✦</span></div>
+          <div id="pickerCategories"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="favorites" class="section-block favorites-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE LOVE LIST</p><h2>Saved outfits<span class="dot">.</span></h2><p class="muted">Your go-to looks, all in one place.</p></div>
+      </div>
+      <div id="savedOutfitsGrid" class="saved-grid"></div>
+      <div id="emptyOutfits" class="empty-state"><span>♡</span><h3>No outfits saved yet</h3><p>Create a look in the Outfit Studio and save it here.</p></div>
+    </section>
+    <footer><a href="#" class="brand"><span class="brand-icon">✳</span> OutfitOrbit</a><p>Made with style, for your everyday story.</p><span>© 2026 OutfitOrbit</span></footer>
+  </main>
+
+  <div id="addModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel">
+      <div class="modal-head"><div><p class="eyebrow">GROW YOUR COLLECTION</p><h2 id="modalTitle">Add a clothing piece</h2></div><button id="closeModalBtn" class="close-btn" aria-label="Close">×</button></div>
+      <form id="addClothingForm" class="form-stack">
+        <label>Clothing name<input id="clothingName" required maxlength="50" placeholder="e.g. Cream knit sweater" /></label>
+        <label>Category<select id="clothingCategory" required><option value="Tops">Tops</option><option value="Bottoms">Bottoms</option><option value="Shoes">Shoes</option><option value="Accessories">Accessories</option></select></label>
+        <label>Image URL <span class="optional">(optional)</span><input id="clothingImage" type="url" placeholder="https://example.com/image.jpg" /></label>
+        <p class="form-hint">Tip: Paste an image link, or leave it blank to use a stylish placeholder.</p>
+        <label>Color / note <span class="optional">(optional)</span><input id="clothingNote" maxlength="60" placeholder="e.g. Beige · Casual" /></label>
+        <button class="btn btn-dark w-full" type="submit">Add to my wardrobe</button>
+      </form>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
