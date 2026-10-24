@@ -24,3 +24,5 @@ A responsive, front-end digital wardrobe project made with HTML, CSS, Tailwind C
 
 ## Important note
 This is a front-end demo. LocalStorage data is saved only in the current browser on the current device; it is not synced between users or devices.
+live demo
+https://nurminiiuc-code.github.io/outfit-project/
